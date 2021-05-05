@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node-lecture/fileSystem.js"
+    "start": "node ./node-lecture/fileSystem.js",
+    "process": "node ./node-lecture/process.js",
+    "events": "node ./node-lecture/events.js",
+    "crypto": "node ./node-lecture/crypto.js"
   },
   "repository": {
     "type": "git",
