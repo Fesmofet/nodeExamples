@@ -30,6 +30,10 @@ const emitterTwoInstance = new EmitterTwo()
 emitterOneInstance.on('message', (message) =>
   console.log('Emitter one message: ', message)
 )
+emitterOneInstance.on('kek', (message) =>
+  console.log('Emitter one kek: ', message)
+)
+
 emitterOneInstance.on('error', (error) =>
   console.log('Emitter one error: ', error)
 )
@@ -45,6 +49,7 @@ emitterOneInstance.emit(
   'message',
   'Node js EventEmitter in action.'
 )
+emitterOneInstance.emit('kek', 'shpek')
 
 //remove
 const messageListener = (message) =>
