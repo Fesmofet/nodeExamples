@@ -31,7 +31,7 @@ decipher.on('end', () => {
   console.log('decrypted',decrypted);
 });
 
-// Encrypted with same algorithm, key and iv.
+// // Encrypted with same algorithm, key and iv.
 
 decipher.write(encrypted, 'hex');
 decipher.end();
