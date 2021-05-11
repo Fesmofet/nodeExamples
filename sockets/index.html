@@ -22,7 +22,7 @@
     <input id="inputNick" autocomplete="off" /><button>Set NickName</button>
 </form>
 <form id="form" action="">
-    <input id="input" autocomplete="off" /><button id="nickNameButton" disabled>Send</button>
+    <input id="input" autocomplete="off" disabled/><button id="messageButton" disabled>Send</button>
 </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -34,14 +34,16 @@
 
       const formNickname = document.getElementById('formNickname');
       const inputNick = document.getElementById('inputNick');
-      const nickNameButton = document.getElementById('nickNameButton');
+      const messageButton = document.getElementById('messageButton');
 
       formNickname.addEventListener('submit', function (e) {
         e.preventDefault();
         if (inputNick.value) {
           socket.emit('chat nickName', inputNick.value);
           inputNick.value = '';
-          nickNameButton.removeAttribute("disabled")
+          messageButton.removeAttribute("disabled")
+          input.removeAttribute("disabled")
+          inputNick.setAttribute("disabled", "true")
         }
       })
 
