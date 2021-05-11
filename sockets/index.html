@@ -43,7 +43,7 @@
           inputNick.value = '';
           messageButton.removeAttribute("disabled")
           input.removeAttribute("disabled")
-          inputNick.setAttribute("disabled", "true")
+          formNickname.parentNode.removeChild(formNickname)
         }
       })
 
