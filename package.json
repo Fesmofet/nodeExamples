@@ -14,7 +14,8 @@
     "error": "node ./express-lecture/errorHandle.js",
     "jwt": "node ./express-lecture/jwt/jwt.js",
     "test1": "node ./node-lecture/tets.js",
-    "socketServer": "node ./sockets/socket.js"
+    "socketServer": "node ./sockets/socket.js",
+    "socketServer2": "node ./sockets2/server.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "express-async-handler": "^1.1.4",
     "pug": "^3.0.2",
     "socket.io": "^4.1.0",
+    "socket.io-client": "^4.1.1",
     "ws": "^7.4.5"
   },
   "devDependencies": {
