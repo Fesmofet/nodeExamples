@@ -29,3 +29,13 @@ wss.on('connection', (ws) => {
     }
   })
 })
+
+const heartbeat = () => {
+  setInterval(() => {
+  wss.clients.forEach((client) => {
+      client.send(JSON.stringify({ type: 'HEARTBEAT' }));
+    });
+  }, 20 * 1000);
+};
+
+heartbeat()
