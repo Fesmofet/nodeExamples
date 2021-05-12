@@ -7,11 +7,12 @@ const client = new Client({
   password: '',
   port: 1521,
 });
+
 const run = async () => {
   try {
     await client.connect();
     console.log('connected');
-    const res = await client.query('SELECT * FROM Users');
+    const res = await client.query('SELECT * FROM USERS');
     // const res = await client.query('CREATE TABLE USERS(id serial PRIMARY KEY, name character varying(20) NOT NULL )');
     // const res = await client.query('INSERT INTO USERS (name) VALUES ($1);', ['Boris']);
     console.log(res);
