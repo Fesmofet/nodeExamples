@@ -1,4 +1,4 @@
-const SocketServer = require('ws').Server;
+const WebSocket = require('ws');
 const express = require('express');
 // const app = express();
 
@@ -7,9 +7,11 @@ const port = 8080;
 
 // const server = app.listen(port, () => console.log(`Server listens http://${host}:${port}`));
 
-const wss = new SocketServer({ port, path: '/' });
+const wss = new WebSocket.Server({ port, path: '/' });
 
-wss.on('connection', (socket) => {
+wss.on('connection', (socket, req) => {
+  const ip = req.socket.remoteAddress;
+  console.log(ip)
   console.log('Got connection from new peer');
   socket.on('message', (message) => {
     try {
@@ -23,7 +25,9 @@ wss.on('connection', (socket) => {
         break;
       case 'sendAll':
         wss.clients.forEach((client) => {
-          client.send(JSON.stringify({type: 'generalChat', value: `${socket.nickName}: ${message.value}`}))
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify({type: 'generalChat', value: `${socket.nickName}: ${message.value}`}))
+          }
         })
         break;
     }
