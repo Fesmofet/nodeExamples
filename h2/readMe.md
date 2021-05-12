@@ -8,7 +8,7 @@ docker create -p 1521:1521 -p 81:81 -v /path/to/local/data_dir:/opt/h2-data --na
 ```sh
 docker start H2dbWithPostgres
 ```
-> Note: You need to create file for your db in /path/to/local/data_dir
+Also tou need to create file for your db in /path/to/local/data_dir
 
 ```sh
 touch /path/to/local/data_dir/mydatabase.mv.db

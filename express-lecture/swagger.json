@@ -1,0 +1,93 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "API for all test apps\n",
+    "version" : "1.0.0",
+    "title" : "TEST API",
+    "contact" : {
+      "email" : "test@wizardsdev.com"
+    }
+  },
+  "host" : "localhost:7709",
+  "schemes" : [ "https", "http" ],
+  "paths" : {
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Return users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+          {
+            "name": "access-token",
+            "in": "header",
+            "description": "user access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userName",
+            "in": "query",
+            "description": "name of hive user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip users",
+            "required": false,
+            "type": "number"
+          },
+
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit active tickets list",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+             "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name" : {
+                    "type": "string"
+                  },
+                  "age" : {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "example": {
+                "message": "Token not valid!"
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "schema": {
+              "example": {
+                "message": "Validation Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
