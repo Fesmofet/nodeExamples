@@ -15,7 +15,8 @@
     "jwt": "node ./express-lecture/jwt/jwt.js",
     "test1": "node ./node-lecture/tets.js",
     "socketServer": "node ./sockets/socket.js",
-    "socketServer2": "node ./sockets2/server.js"
+    "socketServer2": "node ./sockets2/server.js",
+    "h2": "node ./h2/db.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,8 @@
     "dotenv": "^9.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "jdbc": "^0.7.5",
+    "pg": "^8.6.0",
     "pug": "^3.0.2",
     "socket.io": "^4.1.0",
     "socket.io-client": "^4.1.1",
