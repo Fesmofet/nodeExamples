@@ -5,21 +5,21 @@ const host = '127.0.0.1';
 const port = 7090;
 
 const server = app.listen(port, () => console.log(`Server listens http://${host}:${port}`));
-const io = new Server(server);
+const wss = new Server(server);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
+wss.on('connection', (socket) => {
+  console.log('Got connection from new peer');
 
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    console.log(`${socket.nickName || 'guest'} disconnected`);
   });
 
   socket.on('chat message', (msg) => {
-    io.emit('chat message', `${socket.nickName}: ${msg}`);
+    wss.emit('chat message', `${socket.nickName}: ${msg}`);
   });
 
   socket.on('chat nickName', (msg) => {

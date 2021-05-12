@@ -1,17 +1,17 @@
 const SocketServer = require('ws').Server;
 const express = require('express');
-const app = express();
+// const app = express();
 
-const host = '127.0.0.1';
+// const host = '127.0.0.1';
 const port = 8080;
 
-const server = app.listen(port, () => console.log(`Server listens http://${host}:${port}`));
+// const server = app.listen(port, () => console.log(`Server listens http://${host}:${port}`));
 
-const wss = new SocketServer({ server, path: '/' });
+const wss = new SocketServer({ port, path: '/' });
 
-wss.on('connection', (ws) => {
+wss.on('connection', (socket) => {
   console.log('Got connection from new peer');
-  ws.on('message', (message) => {
+  socket.on('message', (message) => {
     try {
       message = JSON.parse(message)
     } catch (error) {
@@ -19,15 +19,18 @@ wss.on('connection', (ws) => {
     }
     switch (message.method) {
       case 'setNickname':
-        ws.nickName = message.value
+        socket.nickName = message.value
         break;
       case 'sendAll':
         wss.clients.forEach((client) => {
-          client.send(JSON.stringify({type: 'generalChat', value: `${ws.nickName}: ${message.value}`}))
+          client.send(JSON.stringify({type: 'generalChat', value: `${socket.nickName}: ${message.value}`}))
         })
         break;
     }
   })
+  socket.on('close', () => {
+    console.log(`${socket.nickName || 'guest'} disconnected`);
+  });
 })
 
 const heartbeat = () => {
